@@ -24,10 +24,10 @@ st.title('Subscribers Growth Simulations')
 
 st.markdown("### A sample Simulation of the work done by Blaine Graboyes.")
 
-cols = st.columns((0.3,0.7))
+cols = st.columns((0.4,0.7))
 
 with cols[0]:
-    st.data_editor(
+    assumptions = st.data_editor(
         assumptions, 
         use_container_width= True,
         hide_index=True
@@ -107,6 +107,5 @@ with cols[1]:
         x = 'month',
         y = "(All) Total Current Subscribers")
     st.plotly_chart(
-        subscriber_growth_line,
-        use_container_width= True
+        subscriber_growth_line
         )
