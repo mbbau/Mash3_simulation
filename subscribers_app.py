@@ -2,6 +2,12 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+### Page configuration
+
+st.set_page_config(
+    layout='wide'
+)
+
 assumptions_raw = pd.read_excel("Mash3_BGS_Talk_v01.xlsx")
 
 assumptions = (
@@ -83,14 +89,15 @@ for i in subscribers['month']:
 
 st.title('Subscribers Growth Simulations')
 
-st.markdown("## A sample Simulation of the work done by Blaine Graboyes.")
+st.markdown("### A sample Simulation of the work done by Blaine Graboyes.")
 
 cols = st.columns((0.3,0.7))
 
 with cols[0]:
     st.dataframe(
         assumptions, 
-        use_container_width= True
+        use_container_width= True,
+        hide_index=True
         )
 
 with cols[1]:
