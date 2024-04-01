@@ -20,6 +20,20 @@ assumptions = (
              'Unnamed: 2': 'YR2'})
     )
 
+st.title('Subscribers Growth Simulations')
+
+st.markdown("### A sample Simulation of the work done by Blaine Graboyes.")
+
+cols = st.columns((0.3,0.7))
+
+with cols[0]:
+    st.data_editor(
+        assumptions, 
+        use_container_width= True,
+        hide_index=True
+        )
+
+
 subscribers = pd.DataFrame()
 total_months = 25
 
@@ -87,18 +101,6 @@ for i in subscribers['month']:
     subscribers['(All Channels) Cumulative New Users'] = subscribers['(All Channels) New Users'].cumsum()
 
 
-st.title('Subscribers Growth Simulations')
-
-st.markdown("### A sample Simulation of the work done by Blaine Graboyes.")
-
-cols = st.columns((0.3,0.7))
-
-with cols[0]:
-    st.dataframe(
-        assumptions, 
-        use_container_width= True,
-        hide_index=True
-        )
 
 with cols[1]:
     subscriber_growth_line = px.line(subscribers,
