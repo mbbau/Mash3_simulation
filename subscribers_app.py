@@ -169,9 +169,7 @@ subscriber_growth_line.add_annotation(
     xanchor='center', yanchor='bottom',
 )
 
-#fig.update_layout(template='plotly_white') 
 
-# Agrega la línea para el límite inferior de la incertidumbre
 subscriber_growth_line.add_trace(go.Scatter(
     x=subscription25['month'],
     y=subscription25['(All) Total Current Subscribers'],
@@ -180,13 +178,13 @@ subscriber_growth_line.add_trace(go.Scatter(
     showlegend=False
 ))
 
-# Agrega la línea para el límite superior de la incertidumbre
+
 subscriber_growth_line.add_trace(go.Scatter(
     x=subscription65['month'],
     y=subscription65['(All) Total Current Subscribers'],
     mode='lines',
-    fill='tonexty',  # Esto rellena el área entre la línea superior y la línea inferior
-    fillcolor='rgba(173, 216, 230, 0.5)',  # Un color azul claro con transparencia
+    fill='tonexty',  
+    fillcolor='rgba(173, 216, 230, 0.5)',  
     line=dict(width=0),
     showlegend=False
 ))
@@ -212,3 +210,60 @@ st.plotly_chart(
     subscriber_growth_line
     )
 
+
+
+marketing_vs_growth = px.scatter(
+    subscribers,
+    x='Marketing Spend / Month', 
+    y='(New) Subscribers', 
+    trendline='ols',  
+    title='Marketing Spend vs. Subscriber Growth'
+)
+marketing_vs_growth.update_layout(
+    plot_bgcolor='white',  
+    paper_bgcolor='white',
+    title_font=dict(size=35),
+    title={'x':0.5, 'y':0.96, 'xanchor': 'center'},
+    height=600,  
+    width=1000,
+    showlegend=False 
+)
+
+marketing_vs_growth.add_annotation(
+    text="Expected subscriber growth based on proyected marketing spend year over year.",
+    xref="paper", yref="paper",
+    x=0.5, y=1.02,  
+    showarrow=False,
+    font=dict(size=20, color="grey"),
+    xanchor='center', yanchor='bottom',
+)
+
+marketing_vs_growth.add_annotation(
+    text="While the exact relationship between <b>marketing spend</b> and<br>"
+         "its influence on subscriber growth is not fully known,<br>"
+         "marketing spend is expected to be one of the main factors<br>"
+         "affecting the <b>volume of users</b>.",
+    x=22000,
+    y=1500,
+    arrowhead=1,
+    yshift=10,
+    xanchor="right",
+    showarrow=False,
+    font=dict(size=20),
+    arrowsize=2,
+    align="center",
+    ax=-50,  
+    ay=-30
+)
+
+marketing_vs_growth.update_layout(
+    xaxis_title='Marketing Spend per Month',
+    yaxis_title='Total Subscribers',
+    title_font=dict(size=24),
+    xaxis_tickfont_size=16,
+    yaxis_tickfont_size=16
+)
+
+st.plotly_chart(
+    marketing_vs_growth
+    )
