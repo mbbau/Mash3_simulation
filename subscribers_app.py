@@ -117,6 +117,8 @@ subscribers = subscription_growth(time_frame = 25, assumptions = assumptions)
 subscription25 = subscription_growth(time_frame = 25, assumptions = assumptions, retention_subscribers = 0.25)
 subscription65 = subscription_growth(time_frame = 25, assumptions = assumptions, retention_subscribers = 0.65)
 
+st.dataframe(subscription25.head())
+
 subscriber_growth_line = px.line(
     subscribers,
     x='month',
