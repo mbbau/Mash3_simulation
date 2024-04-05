@@ -134,8 +134,8 @@ subscriber_growth_line.update_layout(
     paper_bgcolor='white',
     title_font=dict(size=35),
     title={'x':0.5, 'y':0.96, 'xanchor': 'center'},
-    height=800,  
-    width=1200,
+    height=600,  
+    width=1000,
     showlegend=False 
 ).update_xaxes(
     title_font=dict(size=20),
