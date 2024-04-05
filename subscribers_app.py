@@ -146,9 +146,9 @@ subscriber_growth_line.update_layout(
     tickfont_size=15,
     showgrid=False
 ).add_annotation(
-    text="Change in slope due to increase in<br><b>conversion</b>, <b>retention</b> and <b>ad spend</b>",
+    text="Change in slope due to changes in<br><b>conversion</b>, <b>retention</b> and <b>ad spend</b>",
     x=12,
-    y=491.468,
+    y=subscribers.loc[12, "(All) Total Current Subscribers"],
     arrowhead=1,
     yshift=10,
     xanchor="right",
@@ -196,7 +196,7 @@ subscriber_growth_line.add_annotation(
          "based on the different retentions present<br>"
          "in the industry: <b>25 %</b> to <b>65 %</b> based on research.",
     x=18,
-    y=2500,
+    y=subscribers.loc[18, "(All) Total Current Subscribers"],
     arrowhead=1,
     yshift=10,
     xanchor="right",
