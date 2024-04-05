@@ -1,6 +1,7 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+import plotly.graph_objects as go
 
 ### Page configuration
 
@@ -8,16 +9,17 @@ st.set_page_config(
     layout='wide'
 )
 
-assumptions_raw = pd.read_excel("Mash3_BGS_Talk_v01.xlsx")
+assumptions_raw = pd.read_excel("Mash3_BGS_Talk_v02b.xlsx")
 
 assumptions = (
     assumptions_raw
     .iloc[1:,0:3]
-    .head(10)
+    .head(13)
     .rename(columns=
             {'Unnamed: 0':'ASSUMPTIONS',
              'Unnamed: 1':'YR1',
              'Unnamed: 2': 'YR2'})
+    .dropna(subset=['YR1'])
     )
 
 st.title('Subscribers Growth Simulations')
@@ -101,11 +103,99 @@ for i in subscribers['month']:
     subscribers['(All Channels) Cumulative New Users'] = subscribers['(All Channels) New Users'].cumsum()
 
 
+#with cols[1]:
 
-with cols[1]:
-    subscriber_growth_line = px.line(subscribers,
-        x = 'month',
-        y = "(All) Total Current Subscribers")
-    st.plotly_chart(
-        subscriber_growth_line
-        )
+
+subscriber_growth_line = px.line(
+    subscribers,
+    x='month',
+    y="(All) Total Current Subscribers",
+    title="Evolution of Subscribers over Time",
+    labels={
+        "(All) Total Current Subscribers": "Total Subscribers",
+        "month": "Month"}
+)
+
+subscriber_growth_line.update_layout(
+    plot_bgcolor='white',  
+    paper_bgcolor='white',
+    title_font=dict(size=35),
+    title={'x':0.5, 'y':0.96, 'xanchor': 'center'},
+    height=800,  
+    width=1200,
+    showlegend=False 
+).update_xaxes(
+    title_font=dict(size=20),
+    tickfont_size=20,
+    showgrid=False 
+).update_yaxes(
+    title_font=dict(size=20),
+    tickfont_size=15,
+    showgrid=False
+).add_annotation(
+    text="Change in slope due to increase in<br><b>conversion</b>, <b>retention</b> and <b>ad spend</b>",
+    x=12,
+    y=491.468,
+    arrowhead=1,
+    yshift=10,
+    xanchor="right",
+    showarrow=True,
+    font=dict(size=20),
+    arrowsize=2,
+    align="center",
+    ax=-50,  
+    ay=-30
+)
+
+subscriber_growth_line.add_annotation(
+    text="Projected subscriber growth over the first two years based on business model simulations,<br>with product improvements leading to increased retention and conversion rates.",
+    xref="paper", yref="paper",
+    x=0.5, y=0.96,  
+    showarrow=False,
+    font=dict(size=20, color="grey"),
+    xanchor='center', yanchor='bottom',
+)
+
+#fig.update_layout(template='plotly_white') 
+
+# Agrega la línea para el límite inferior de la incertidumbre
+subscriber_growth_line.add_trace(go.Scatter(
+    x=subscription25['month'],
+    y=subscription25['(All) Total Current Subscribers'],
+    mode='lines',
+    line=dict(width=0),
+    showlegend=False
+))
+
+# Agrega la línea para el límite superior de la incertidumbre
+subscriber_growth_line.add_trace(go.Scatter(
+    x=subscription65['month'],
+    y=subscription65['(All) Total Current Subscribers'],
+    mode='lines',
+    fill='tonexty',  # Esto rellena el área entre la línea superior y la línea inferior
+    fillcolor='rgba(173, 216, 230, 0.5)',  # Un color azul claro con transparencia
+    line=dict(width=0),
+    showlegend=False
+))
+
+subscriber_growth_line.add_annotation(
+    text="The area represent all the posible growth<br>"
+         "based on the different retentions present<br>"
+         "in the industry: <b>25 %</b> to <b>65 %</b> based on research.",
+    x=18,
+    y=2500,
+    arrowhead=1,
+    yshift=10,
+    xanchor="right",
+    showarrow=True,
+    font=dict(size=20),
+    arrowsize=2,
+    align="center",
+    ax=-50,  
+    ay=-30
+)
+
+st.plotly_chart(
+    subscriber_growth_line
+    )
+
