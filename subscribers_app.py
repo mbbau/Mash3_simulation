@@ -282,8 +282,8 @@ channels_for_new_users = px.bar(
     paper_bgcolor='white',
     title_font=dict(size=35),
     title={'x':0.5, 'y':0.96, 'xanchor': 'center'},
-    height=800,  
-    width=1200,
+    height=600,  
+    width=1000,
     showlegend=True,
     xaxis_title='Month',
     yaxis_title='Total New Users',
@@ -368,8 +368,8 @@ customer_journey.update_layout(title="Expected Customer Journey",
                     showlegend=False,    plot_bgcolor='white',  
                     paper_bgcolor='white',
                     title_font=dict(size=35),
-                    height=1000,  
-                    width=1200,)
+                    height=600,  
+                    width=1000,)
 
 customer_journey.update_layout(title={'x':0.5, 'y':0.97, 'xanchor': 'center'})
 
