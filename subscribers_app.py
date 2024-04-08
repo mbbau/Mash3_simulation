@@ -368,8 +368,8 @@ customer_journey.update_layout(title="Expected Customer Journey",
                     showlegend=False,    plot_bgcolor='white',  
                     paper_bgcolor='white',
                     title_font=dict(size=35),
-                    height=600,  
-                    width=1000,)
+                    height=1000,  
+                    width=1200,)
 
 customer_journey.update_layout(title={'x':0.5, 'y':0.97, 'xanchor': 'center'})
 
