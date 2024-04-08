@@ -267,3 +267,166 @@ marketing_vs_growth.update_layout(
 st.plotly_chart(
     marketing_vs_growth
     )
+
+channels_for_new_users = px.bar(
+    subscribers.rename(columns={
+        'Organic / Social Visitors': 'Organic / Social Users',
+        'Viral Acquired Visitors' : 'Viral Acquired Users',
+        'New Acquired Users (Paid)': 'New Acquired Subscribers'
+        }),
+    x='month', 
+    y=['Organic / Social Users','Viral Acquired Users','New Acquired Subscribers'],
+    title='Sources of New Users'
+).update_layout(
+    plot_bgcolor='white',  
+    paper_bgcolor='white',
+    title_font=dict(size=35),
+    title={'x':0.5, 'y':0.96, 'xanchor': 'center'},
+    height=800,  
+    width=1200,
+    showlegend=True,
+    xaxis_title='Month',
+    yaxis_title='Total New Users',
+    xaxis_tickfont_size=16,
+    yaxis_tickfont_size=16,
+    legend=dict(
+    yanchor="top",
+    y=0.98,
+    xanchor="left",
+    x=0.01),
+    legend_title_text='Channel'
+).add_shape(
+    name="first stage",
+    showlegend=False,
+    type="rect",
+    xref="paper",
+    line=dict(dash="dash"),
+    x0=0.0,
+    x1=0.12,
+    y0=0,
+    y1=5000,
+).add_annotation(
+    text =  "Initially, the majority of traffic<br>"
+            "would likely come from<br>"
+            "paid marketing which the<br>"
+            "business controls.",
+    x = 3.5,
+    y = 6500,
+    showarrow=False,
+    font=dict(size=18),
+    yshift=35
+).add_annotation(
+    text =  "As the platform evolves, we'd expect<br>"
+            "customers to shift to organic / social traffic<br>"
+            "based on the effect of viral growth",
+    x = 15,
+    y = 25000,
+    showarrow=False,
+    font=dict(size=18),
+    yshift=35
+).add_annotation(
+    text="Expected traffic of new users coming from marketing spend, virality, and organic visitors.",
+    xref="paper", yref="paper",
+    x=0.5, y=1.01,  
+    showarrow=False,
+    font=dict(size=20, color="grey"),
+    xanchor='center', yanchor='bottom',
+)
+
+st.plotly_chart(
+    channels_for_new_users
+    )
+
+
+nodos_x = [1, 2, 3]
+nodos_y = [3, 3, 3]
+nodos_texto = ["New Acquired Users (Paid)", "Organic / Social Visitors", "Viral Acquired Visitors"]
+
+nodo_new_users_x = [2]
+nodo_new_users_y = [1]
+nodo_new_users_text = ["New Users"]
+
+conexiones_x = [nodos_x[0], nodo_new_users_x[0], None,  
+                nodos_x[1], nodo_new_users_x[0], None,  
+                nodos_x[2], nodo_new_users_x[0], None]  
+conexiones_y = [nodos_y[0], nodo_new_users_y[0], None,  
+                nodos_y[1], nodo_new_users_y[0], None,
+                nodos_y[2], nodo_new_users_y[0], None]
+
+customer_journey = go.Figure(go.Scatter(x=nodos_x, y=nodos_y, mode='markers+text', 
+                           text=nodos_texto, textposition='top center', 
+                           marker=dict(size=25, color='LightSkyBlue'), name='Nodos',textfont=dict(size=16))
+).add_trace(go.Scatter(x=conexiones_x, y=conexiones_y, mode='lines', line=dict(color='royalblue', width=2), name='Conexiones')
+).add_trace(go.Scatter(x=[2, 1.5], y=[1, -1], mode='lines', line=dict(color='tomato', width=2), name='Conexiones'))
+customer_journey.add_trace(go.Scatter(x=[2, 2.5], y=[1, -1], mode='lines', line=dict(color='springgreen', width=2), name='Conexiones'))
+customer_journey.add_trace(go.Scatter(x=[2.5, 2], y=[-1, -3], mode='lines', line=dict(color='tomato', width=2), name='Conexiones'))
+customer_journey.add_trace(go.Scatter(x=[2.5, 3], y=[-1, -3], mode='lines', line=dict(color='springgreen', width=2), name='Conexiones'))
+
+customer_journey.update_layout(title="Expected Customer Journey",
+                    xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+                    yaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+                    showlegend=False,    plot_bgcolor='white',  
+                    paper_bgcolor='white',
+                    title_font=dict(size=35),
+                    height=1000,  
+                    width=1200,)
+
+customer_journey.update_layout(title={'x':0.5, 'y':0.97, 'xanchor': 'center'})
+
+customer_journey.add_trace(go.Scatter(x=nodo_new_users_x, y=nodo_new_users_y, mode='markers+text', 
+                         text=nodo_new_users_text, textposition='middle right',
+                         marker=dict(size=25, color='Green'), name='Nodos',textfont=dict(size=16)))
+
+new_nodes_x = [1.5,2.5]
+new_nodes_y = [-1, -1]
+nodo_nodes_text = ["Churned Users", "New Subscribers"]
+
+customer_journey.add_trace(go.Scatter(x=new_nodes_x, y=new_nodes_y, mode='markers+text', 
+                         text=nodo_nodes_text, textposition='middle left',
+                         marker=dict(size=25, color=['Red', 'green']), name='Nodos',textfont=dict(size=16)))
+
+final_nodes_x = [2,3]
+final_nodes_y = [-3, -3]
+final_nodes_text = ["Churned Subscribers", "Retained Subscribers"]
+
+customer_journey.add_trace(go.Scatter(x=final_nodes_x, y=final_nodes_y, mode='markers+text', 
+                         text=final_nodes_text, textposition='middle left',
+                         marker=dict(size=25, color=['Red', 'green']), name='Nodos',textfont=dict(size=16)))
+
+customer_journey.add_annotation(
+    text="Expected Customer Journey Based on Research of the Current State of the E-Learning Industry.",
+    xref="paper", yref="paper",
+    x=0.5, y=1.01,  
+    showarrow=False,
+    font=dict(size=20, color="grey"),
+    xanchor='center', yanchor='bottom',
+)
+
+customer_journey.add_annotation(
+    text="According to industry statistics<br><b>Retention Rates</b> can<br>be between <b>25%</b> to <b>60%</b>.",
+    xref="paper", yref="paper",
+    x=0.85, y=0.40,  
+    showarrow=False,
+    font=dict(size=20),
+    xanchor='center', yanchor='bottom',
+)
+
+customer_journey.add_annotation(
+    text="<b>Virality</b> will come<br>from users and subscribers<br><b>attracting</b> new users.",
+    xref="paper", yref="paper",
+    x=0.85, y=0.70,  
+    showarrow=False,
+    font=dict(size=20),
+    xanchor='center', yanchor='bottom',
+)
+
+customer_journey.add_annotation(
+    text="<b>Acquired Users</b> will come<br>from our<br><b>marketing spend</b>.",
+    xref="paper", yref="paper",
+    x=0.15, y=0.70,  
+    showarrow=False,
+    font=dict(size=20),
+    xanchor='center', yanchor='bottom',
+)
+
+st.plotly_chart(customer_journey)
