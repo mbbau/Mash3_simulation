@@ -337,6 +337,10 @@ st.plotly_chart(
     channels_for_new_users
     )
 
+total_visitors = subscribers['New Acquired Users (Paid)'].sum() + (subscribers['Organic / Social Visitors'].sum() * 0.25) + (subscribers['Viral Acquired Visitors'].sum() * 0.25)
+marketing_contribution = subscribers['New Acquired Users (Paid)'].sum() / total_visitors
+organic_contribution = (subscribers['Organic / Social Visitors'].sum() * 0.25) / total_visitors
+viral_contribution = (subscribers['Viral Acquired Visitors'].sum() * 0.25) / total_visitors
 
 nodos_x = [1, 2, 3]
 nodos_y = [3, 3, 3]
@@ -353,11 +357,26 @@ conexiones_y = [nodos_y[0], nodo_new_users_y[0], None,
                 nodos_y[1], nodo_new_users_y[0], None,
                 nodos_y[2], nodo_new_users_y[0], None]
 
-customer_journey = go.Figure(go.Scatter(x=nodos_x, y=nodos_y, mode='markers+text', 
+customer_journey = go.Figure()
+
+# Crear un factor de escala para el ancho de la línea, por ejemplo 10
+factor_escala_ancho = 20
+# Suponiendo que estos son los porcentajes de flujo desde cada tipo de usuario
+porcentajes_flujo = [marketing_contribution, organic_contribution, viral_contribution]  # Podrían representar, por ejemplo, pagado, orgánico y viral
+
+# Actualizar las conexiones para tener en cuenta el porcentaje de flujo
+for i, pct in enumerate(porcentajes_flujo):
+    customer_journey.add_trace(go.Scatter(x=[nodos_x[i], nodo_new_users_x[0]], y=[nodos_y[i], nodo_new_users_y[0]], mode='lines',
+                                          line=dict(color='royalblue', width=pct * factor_escala_ancho), name='Conexiones'))
+
+customer_journey.add_trace(
+    go.Scatter(x=nodos_x, y=nodos_y, mode='markers+text', 
                            text=nodos_texto, textposition='top center', 
                            marker=dict(size=25, color='LightSkyBlue'), name='Nodos',textfont=dict(size=16))
-).add_trace(go.Scatter(x=conexiones_x, y=conexiones_y, mode='lines', line=dict(color='royalblue', width=2), name='Conexiones')
-).add_trace(go.Scatter(x=[2, 1.5], y=[1, -1], mode='lines', line=dict(color='tomato', width=2), name='Conexiones'))
+) 
+
+customer_journey.add_trace(go.Scatter(x=[2, 1.5], y=[1, -1], mode='lines', line=dict(color='tomato', width=2), name='Conexiones'))
+
 customer_journey.add_trace(go.Scatter(x=[2, 2.5], y=[1, -1], mode='lines', line=dict(color='springgreen', width=2), name='Conexiones'))
 customer_journey.add_trace(go.Scatter(x=[2.5, 2], y=[-1, -3], mode='lines', line=dict(color='tomato', width=2), name='Conexiones'))
 customer_journey.add_trace(go.Scatter(x=[2.5, 3], y=[-1, -3], mode='lines', line=dict(color='springgreen', width=2), name='Conexiones'))
@@ -427,6 +446,36 @@ customer_journey.add_annotation(
     showarrow=False,
     font=dict(size=20),
     xanchor='center', yanchor='bottom',
+)
+
+customer_journey.add_annotation(
+    text=f"contribution:<br>{round(marketing_contribution*100, 1)}%",
+    xref="paper", yref="paper",
+    x=0.22, y=0.88,  
+    showarrow=False,
+    font=dict(size=20),
+    xanchor='center', yanchor='bottom',
+    bordercolor="#c7c7c7"
+)
+
+customer_journey.add_annotation(
+    text=f"contribution:<br>{round(organic_contribution*100, 1)}%",
+    xref="paper", yref="paper",
+    x=0.58, y=0.84,  
+    showarrow=False,
+    font=dict(size=20),
+    xanchor='center', yanchor='bottom',
+    bordercolor="#c7c7c7"
+)
+
+customer_journey.add_annotation(
+    text=f"contribution:<br>{round(viral_contribution*100, 1)}%",
+    xref="paper", yref="paper",
+    x=0.78, y=0.88,  
+    showarrow=False,
+    font=dict(size=20),
+    xanchor='center', yanchor='bottom',
+    bordercolor="#c7c7c7"
 )
 
 st.plotly_chart(customer_journey)
