@@ -26,14 +26,12 @@ st.title('Subscribers Growth Simulations')
 
 st.markdown("### A sample Simulation of the work done by Blaine Graboyes.")
 
-cols = st.columns((0.4,0.7))
 
-with cols[0]:
-    assumptions = st.data_editor(
-        assumptions, 
-        use_container_width= True,
-        hide_index=True
-        )
+assumptions = st.data_editor(
+    assumptions, 
+    use_container_width= True,
+    hide_index=True
+    )
 
 
 subscribers = pd.DataFrame()
@@ -112,11 +110,12 @@ def apply_assumption(row, assumption_name):
     else:
         return assumptions.loc[assumptions['ASSUMPTIONS'] == assumption_name, 'YR2'].iloc[0]
 
-#with cols[1]:
+
 subscribers = subscription_growth(time_frame = 25, assumptions = assumptions)
 subscription25 = subscription_growth(time_frame = 25, assumptions = assumptions, retention_subscribers = 0.25)
 subscription65 = subscription_growth(time_frame = 25, assumptions = assumptions, retention_subscribers = 0.65)
 
+st.title("Sample result from simulations")
 st.dataframe(subscription25.head())
 
 subscriber_growth_line = px.line(
