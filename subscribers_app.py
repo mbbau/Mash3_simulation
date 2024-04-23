@@ -152,7 +152,7 @@ subscriber_growth_line.update_layout(
     yshift=10,
     xanchor="right",
     showarrow=True,
-    font=dict(size=12),
+    font=dict(size=14),
     arrowsize=2,
     align="center",
     ax=-50,  
@@ -162,9 +162,9 @@ subscriber_growth_line.update_layout(
 subscriber_growth_line.add_annotation(
     text="Projected subscriber growth over the first two years based on business model simulations,<br>with product improvements leading to increased retention and conversion rates.",
     xref="paper", yref="paper",
-    x=0.5, y=0.98,  
+    x=0.5, y=0.90,  
     showarrow=False,
-    font=dict(size=12, color="grey"),
+    font=dict(size=14, color="grey"),
     xanchor='center', yanchor='bottom',
 )
 
@@ -198,7 +198,7 @@ subscriber_growth_line.add_annotation(
     yshift=10,
     xanchor="right",
     showarrow=True,
-    font=dict(size=20),
+    font=dict(size=14),
     arrowsize=2,
     align="center",
     ax=-50,  
