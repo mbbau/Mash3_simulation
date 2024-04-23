@@ -228,7 +228,7 @@ marketing_vs_growth = px.scatter(
 marketing_vs_growth.update_layout(
     plot_bgcolor='white',  
     paper_bgcolor='white',
-    title_font=dict(size=25),
+    title_font=dict(size=26),
     title={'x':0.5, 'y':0.96, 'xanchor': 'center'},
     height=400,  
     width=800,
@@ -238,9 +238,9 @@ marketing_vs_growth.update_layout(
 marketing_vs_growth.add_annotation(
     text="Expected subscriber growth based on proyected marketing spend year over year.",
     xref="paper", yref="paper",
-    x=0.5, y=1.02,  
+    x=0.5, y=1.09,  
     showarrow=False,
-    font=dict(size=12, color="grey"),
+    font=dict(size=15, color="grey"),
     xanchor='center', yanchor='bottom',
 )
 
@@ -255,7 +255,7 @@ marketing_vs_growth.add_annotation(
     yshift=10,
     xanchor="right",
     showarrow=False,
-    font=dict(size=12),
+    font=dict(size=14),
     arrowsize=2,
     align="center",
     ax=-50,  
@@ -302,7 +302,7 @@ channels_for_new_users = px.bar(
     title_font=dict(size=25),
     title={'x':0.5, 'y':0.96, 'xanchor': 'center'},
     height=400,  
-    width=800,
+    width=850,
     showlegend=True,
     xaxis_title='Month',
     yaxis_title='Total New Users',
@@ -346,7 +346,7 @@ channels_for_new_users = px.bar(
 ).add_annotation(
     text="Expected traffic of new users coming from marketing spend, virality, and organic visitors.",
     xref="paper", yref="paper",
-    x=0.5, y=1.01,  
+    x=0.5, y=1.09,  
     showarrow=False,
     font=dict(size=15, color="grey"),
     xanchor='center', yanchor='bottom',
@@ -444,7 +444,7 @@ customer_journey.add_trace(go.Scatter(x=final_nodes_x, y=final_nodes_y, mode='ma
 customer_journey.add_annotation(
     text="Expected Customer Journey Based on Research of the Current State of the E-Learning Industry.",
     xref="paper", yref="paper",
-    x=0.5, y=1.01,  
+    x=0.5, y=1.19,  
     showarrow=False,
     font=dict(size=15, color="grey"),
     xanchor='center', yanchor='bottom',
