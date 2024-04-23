@@ -214,7 +214,8 @@ with evolution_of_subscribers[0]:
 with evolution_of_subscribers[1]:
     st.markdown("# Dynamic Version")
     st.plotly_chart(
-        subscriber_growth_line
+        subscriber_growth_line,
+        use_container_width=True
         )
 
 marketing_vs_growth = px.scatter(
@@ -279,7 +280,8 @@ with marketing_growth[0]:
 with marketing_growth[1]:
     st.markdown("# Dynamic Version")
     st.plotly_chart(
-        marketing_vs_growth
+        marketing_vs_growth,
+        use_container_width=True
         )
 
 
@@ -359,7 +361,8 @@ with new_users_evolution[0]:
 with new_users_evolution[1]:
     st.markdown("# Dynamic Version")
     st.plotly_chart(
-        channels_for_new_users
+        channels_for_new_users,
+        use_container_width=True
         )
 
 
@@ -514,6 +517,7 @@ with expected_customer_journey[0]:
 with expected_customer_journey[1]:
     st.markdown("# Dynamic Version")
     st.plotly_chart(
-        customer_journey
+        customer_journey,
+        use_container_width=True
         )
 
