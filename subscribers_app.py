@@ -205,11 +205,17 @@ subscriber_growth_line.add_annotation(
     ay=-30
 )
 
-st.plotly_chart(
-    subscriber_growth_line
-    )
+evolution_of_subscribers = st.columns(2)
 
+with evolution_of_subscribers[0]:
+    st.markdown("# Static Version")
+    st.image('evolution of subscribers.png')
 
+with evolution_of_subscribers[1]:
+    st.markdown("# Dynamic Version")
+    st.plotly_chart(
+        subscriber_growth_line
+        )
 
 marketing_vs_growth = px.scatter(
     subscribers,
@@ -263,9 +269,21 @@ marketing_vs_growth.update_layout(
     yaxis_tickfont_size=16
 )
 
-st.plotly_chart(
-    marketing_vs_growth
-    )
+
+marketing_growth = st.columns(2)
+
+with marketing_growth[0]:
+    st.markdown("# Static Version")
+    st.image('Marketing Spend vs subscribers growth.png')
+
+with marketing_growth[1]:
+    st.markdown("# Dynamic Version")
+    st.plotly_chart(
+        marketing_vs_growth
+        )
+
+
+
 
 channels_for_new_users = px.bar(
     subscribers.rename(columns={
@@ -332,9 +350,18 @@ channels_for_new_users = px.bar(
     xanchor='center', yanchor='bottom',
 )
 
-st.plotly_chart(
-    channels_for_new_users
-    )
+new_users_evolution = st.columns(2)
+
+with new_users_evolution[0]:
+    st.markdown("# Static Version")
+    st.image('Sources of new users.png')
+
+with new_users_evolution[1]:
+    st.markdown("# Dynamic Version")
+    st.plotly_chart(
+        channels_for_new_users
+        )
+
 
 total_visitors = subscribers['New Acquired Users (Paid)'].sum() + (subscribers['Organic / Social Visitors'].sum() * 0.25) + (subscribers['Viral Acquired Visitors'].sum() * 0.25)
 marketing_contribution = subscribers['New Acquired Users (Paid)'].sum() / total_visitors
@@ -358,12 +385,12 @@ conexiones_y = [nodos_y[0], nodo_new_users_y[0], None,
 
 customer_journey = go.Figure()
 
-# Crear un factor de escala para el ancho de la línea, por ejemplo 10
-factor_escala_ancho = 20
-# Suponiendo que estos son los porcentajes de flujo desde cada tipo de usuario
-porcentajes_flujo = [marketing_contribution, organic_contribution, viral_contribution]  # Podrían representar, por ejemplo, pagado, orgánico y viral
 
-# Actualizar las conexiones para tener en cuenta el porcentaje de flujo
+factor_escala_ancho = 30
+
+porcentajes_flujo = [marketing_contribution, organic_contribution, viral_contribution]  
+
+
 for i, pct in enumerate(porcentajes_flujo):
     customer_journey.add_trace(go.Scatter(x=[nodos_x[i], nodo_new_users_x[0]], y=[nodos_y[i], nodo_new_users_y[0]], mode='lines',
                                           line=dict(color='royalblue', width=pct * factor_escala_ancho), name='Conexiones'))
@@ -477,4 +504,16 @@ customer_journey.add_annotation(
     bordercolor="#c7c7c7"
 )
 
-st.plotly_chart(customer_journey)
+
+expected_customer_journey = st.columns(2)
+
+with expected_customer_journey[0]:
+    st.markdown("# Static Version")
+    st.image('Expected customer Journey.png')
+
+with expected_customer_journey[1]:
+    st.markdown("# Dynamic Version")
+    st.plotly_chart(
+        customer_journey
+        )
+
