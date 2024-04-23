@@ -134,15 +134,15 @@ subscriber_growth_line.update_layout(
     title_font=dict(size=25),
     title={'x':0.5, 'y':0.96, 'xanchor': 'center'},
     height=400,  
-    width=700,
+    width=800,
     showlegend=False 
 ).update_xaxes(
-    title_font=dict(size=12),
-    tickfont_size=12,
+    title_font=dict(size=14),
+    tickfont_size=14,
     showgrid=False 
 ).update_yaxes(
-    title_font=dict(size=12),
-    tickfont_size=12,
+    title_font=dict(size=14),
+    tickfont_size=14,
     showgrid=False
 ).add_annotation(
     text="Change in slope due to changes in<br><b>conversion</b>, <b>retention</b> and <b>ad spend</b>",
@@ -162,9 +162,9 @@ subscriber_growth_line.update_layout(
 subscriber_growth_line.add_annotation(
     text="Projected subscriber growth over the first two years based on business model simulations,<br>with product improvements leading to increased retention and conversion rates.",
     xref="paper", yref="paper",
-    x=0.5, y=1.10,  
+    x=0.5, y=1.08,  
     showarrow=False,
-    font=dict(size=16, color="grey"),
+    font=dict(size=15, color="grey"),
     xanchor='center', yanchor='bottom',
 )
 
@@ -228,10 +228,10 @@ marketing_vs_growth = px.scatter(
 marketing_vs_growth.update_layout(
     plot_bgcolor='white',  
     paper_bgcolor='white',
-    title_font=dict(size=35),
+    title_font=dict(size=25),
     title={'x':0.5, 'y':0.96, 'xanchor': 'center'},
-    height=600,  
-    width=1000,
+    height=400,  
+    width=800,
     showlegend=False 
 )
 
@@ -240,7 +240,7 @@ marketing_vs_growth.add_annotation(
     xref="paper", yref="paper",
     x=0.5, y=1.02,  
     showarrow=False,
-    font=dict(size=20, color="grey"),
+    font=dict(size=12, color="grey"),
     xanchor='center', yanchor='bottom',
 )
 
@@ -255,7 +255,7 @@ marketing_vs_growth.add_annotation(
     yshift=10,
     xanchor="right",
     showarrow=False,
-    font=dict(size=20),
+    font=dict(size=12),
     arrowsize=2,
     align="center",
     ax=-50,  
@@ -265,9 +265,9 @@ marketing_vs_growth.add_annotation(
 marketing_vs_growth.update_layout(
     xaxis_title='Marketing Spend per Month',
     yaxis_title='Total Subscribers',
-    title_font=dict(size=24),
-    xaxis_tickfont_size=16,
-    yaxis_tickfont_size=16
+    title_font=dict(size=14),
+    xaxis_tickfont_size=14,
+    yaxis_tickfont_size=14
 )
 
 
@@ -299,15 +299,15 @@ channels_for_new_users = px.bar(
 ).update_layout(
     plot_bgcolor='white',  
     paper_bgcolor='white',
-    title_font=dict(size=35),
+    title_font=dict(size=25),
     title={'x':0.5, 'y':0.96, 'xanchor': 'center'},
-    height=600,  
-    width=1000,
+    height=400,  
+    width=800,
     showlegend=True,
     xaxis_title='Month',
     yaxis_title='Total New Users',
-    xaxis_tickfont_size=16,
-    yaxis_tickfont_size=16,
+    xaxis_tickfont_size=14,
+    yaxis_tickfont_size=14,
     legend=dict(
     yanchor="top",
     y=0.98,
@@ -332,7 +332,7 @@ channels_for_new_users = px.bar(
     x = 3.5,
     y = 6500,
     showarrow=False,
-    font=dict(size=18),
+    font=dict(size=14),
     yshift=35
 ).add_annotation(
     text =  "As the platform evolves, we'd expect<br>"
@@ -341,14 +341,14 @@ channels_for_new_users = px.bar(
     x = 15,
     y = 25000,
     showarrow=False,
-    font=dict(size=18),
+    font=dict(size=14),
     yshift=35
 ).add_annotation(
     text="Expected traffic of new users coming from marketing spend, virality, and organic visitors.",
     xref="paper", yref="paper",
     x=0.5, y=1.01,  
     showarrow=False,
-    font=dict(size=20, color="grey"),
+    font=dict(size=15, color="grey"),
     xanchor='center', yanchor='bottom',
 )
 
@@ -416,8 +416,8 @@ customer_journey.update_layout(title="Expected Customer Journey",
                     showlegend=False,    plot_bgcolor='white',  
                     paper_bgcolor='white',
                     title_font=dict(size=35),
-                    height=1000,  
-                    width=1200,)
+                    height=800,  
+                    width=1000,)
 
 customer_journey.update_layout(title={'x':0.5, 'y':0.97, 'xanchor': 'center'})
 
@@ -431,7 +431,7 @@ nodo_nodes_text = ["Churned Users", "New Subscribers"]
 
 customer_journey.add_trace(go.Scatter(x=new_nodes_x, y=new_nodes_y, mode='markers+text', 
                          text=nodo_nodes_text, textposition='middle left',
-                         marker=dict(size=25, color=['Red', 'green']), name='Nodos',textfont=dict(size=16)))
+                         marker=dict(size=14, color=['Red', 'green']), name='Nodos',textfont=dict(size=16)))
 
 final_nodes_x = [2,3]
 final_nodes_y = [-3, -3]
@@ -439,14 +439,14 @@ final_nodes_text = ["Churned Subscribers", "Retained Subscribers"]
 
 customer_journey.add_trace(go.Scatter(x=final_nodes_x, y=final_nodes_y, mode='markers+text', 
                          text=final_nodes_text, textposition='middle left',
-                         marker=dict(size=25, color=['Red', 'green']), name='Nodos',textfont=dict(size=16)))
+                         marker=dict(size=14, color=['Red', 'green']), name='Nodos',textfont=dict(size=16)))
 
 customer_journey.add_annotation(
     text="Expected Customer Journey Based on Research of the Current State of the E-Learning Industry.",
     xref="paper", yref="paper",
     x=0.5, y=1.01,  
     showarrow=False,
-    font=dict(size=20, color="grey"),
+    font=dict(size=15, color="grey"),
     xanchor='center', yanchor='bottom',
 )
 
@@ -455,7 +455,7 @@ customer_journey.add_annotation(
     xref="paper", yref="paper",
     x=0.85, y=0.40,  
     showarrow=False,
-    font=dict(size=20),
+    font=dict(size=14),
     xanchor='center', yanchor='bottom',
 )
 
@@ -464,7 +464,7 @@ customer_journey.add_annotation(
     xref="paper", yref="paper",
     x=0.85, y=0.70,  
     showarrow=False,
-    font=dict(size=20),
+    font=dict(size=14),
     xanchor='center', yanchor='bottom',
 )
 
@@ -473,7 +473,7 @@ customer_journey.add_annotation(
     xref="paper", yref="paper",
     x=0.15, y=0.70,  
     showarrow=False,
-    font=dict(size=20),
+    font=dict(size=14),
     xanchor='center', yanchor='bottom',
 )
 
@@ -482,7 +482,7 @@ customer_journey.add_annotation(
     xref="paper", yref="paper",
     x=0.22, y=0.88,  
     showarrow=False,
-    font=dict(size=20),
+    font=dict(size=14),
     xanchor='center', yanchor='bottom',
     bordercolor="#c7c7c7"
 )
@@ -492,7 +492,7 @@ customer_journey.add_annotation(
     xref="paper", yref="paper",
     x=0.58, y=0.84,  
     showarrow=False,
-    font=dict(size=20),
+    font=dict(size=14),
     xanchor='center', yanchor='bottom',
     bordercolor="#c7c7c7"
 )
@@ -502,7 +502,7 @@ customer_journey.add_annotation(
     xref="paper", yref="paper",
     x=0.78, y=0.88,  
     showarrow=False,
-    font=dict(size=20),
+    font=dict(size=14),
     xanchor='center', yanchor='bottom',
     bordercolor="#c7c7c7"
 )
