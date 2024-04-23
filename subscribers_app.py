@@ -131,10 +131,10 @@ subscriber_growth_line = px.line(
 subscriber_growth_line.update_layout(
     plot_bgcolor='white',  
     paper_bgcolor='white',
-    title_font=dict(size=35),
+    title_font=dict(size=25),
     title={'x':0.5, 'y':0.96, 'xanchor': 'center'},
-    height=600,  
-    width=1000,
+    height=400,  
+    width=700,
     showlegend=False 
 ).update_xaxes(
     title_font=dict(size=20),
