@@ -162,7 +162,7 @@ subscriber_growth_line.update_layout(
 subscriber_growth_line.add_annotation(
     text="Projected subscriber growth over the first two years based on business model simulations,<br>with product improvements leading to increased retention and conversion rates.",
     xref="paper", yref="paper",
-    x=0.5, y=0.99,  
+    x=0.5, y=1.05,  
     showarrow=False,
     font=dict(size=14, color="grey"),
     xanchor='center', yanchor='bottom',
