@@ -314,23 +314,13 @@ channels_for_new_users = px.bar(
     xanchor="left",
     x=0.01),
     legend_title_text='Channel'
-).add_shape(
-    name="first stage",
-    showlegend=False,
-    type="rect",
-    xref="paper",
-    line=dict(dash="dash"),
-    x0=0.0,
-    x1=0.12,
-    y0=0,
-    y1=5000,
 ).add_annotation(
     text =  "Initially, the majority of traffic<br>"
             "would likely come from<br>"
             "paid marketing which the<br>"
             "business controls.",
     x = 3.5,
-    y = 6500,
+    y = (subscribers.loc[3, "Viral Acquired Users"] + subscribers.loc[3, 'Organic / Social Users'] + subscribers.loc[3, 'New Acquired Subscribers']) * 1.2,
     showarrow=False,
     font=dict(size=14),
     yshift=35
@@ -339,7 +329,7 @@ channels_for_new_users = px.bar(
             "customers to shift to organic / social traffic<br>"
             "based on the effect of viral growth",
     x = 15,
-    y = 25000,
+    y = (subscribers.loc[15, "Viral Acquired Users"] + subscribers.loc[15, 'Organic / Social Users'] + subscribers.loc[15, 'New Acquired Subscribers']) * 1.2,
     showarrow=False,
     font=dict(size=14),
     yshift=35
