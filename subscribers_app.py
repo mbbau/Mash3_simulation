@@ -320,7 +320,7 @@ channels_for_new_users = px.bar(
             "paid marketing which the<br>"
             "business controls.",
     x = 3.5,
-    y = (subscribers.loc[3, "Viral Acquired Users"] + subscribers.loc[3, 'Organic / Social Users'] + subscribers.loc[3, 'New Acquired Subscribers']) * 1.2,
+    y = (subscribers.loc[3, 'Viral Acquired Visitors'] + subscribers.loc[3, 'Organic / Social Visitors'] + subscribers.loc[3, 'New Acquired Users (Paid)']) * 1.2,
     showarrow=False,
     font=dict(size=14),
     yshift=35
@@ -329,7 +329,7 @@ channels_for_new_users = px.bar(
             "customers to shift to organic / social traffic<br>"
             "based on the effect of viral growth",
     x = 15,
-    y = (subscribers.loc[15, "Viral Acquired Users"] + subscribers.loc[15, 'Organic / Social Users'] + subscribers.loc[15, 'New Acquired Subscribers']) * 1.2,
+    y = (subscribers.loc[15, 'Viral Acquired Visitors'] + subscribers.loc[15, 'Organic / Social Visitors'] + subscribers.loc[15, 'New Acquired Users (Paid)']) * 1.2,
     showarrow=False,
     font=dict(size=14),
     yshift=35
